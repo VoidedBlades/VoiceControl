@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VoiceControl"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="74" Width="214.8">
     <Grid>
-        
+        <TextBox TextAlignment="Center" BorderThickness="0" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Mode" VerticalAlignment="Top" Width="206"/>
+        <TextBox x:Name="ModeText" TextAlignment="Center" BorderThickness="0" HorizontalAlignment="Left" Height="19" TextWrapping="Wrap" Text="Default" VerticalAlignment="Top" Width="206" Margin="0,23,0,0"/>
+        <TextBox x:Name="LanguageText" BorderThickness="0" HorizontalAlignment="Left" TextAlignment="Center" Height="18" TextWrapping="Wrap" Text="en-US" VerticalAlignment="Top" Width="59" Margin="147,0,0,0"/>
+
+
     </Grid>
 </Window>
+    

@@ -1,0 +1,14 @@
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Debug\VoiceControl.csprojAssemblyReference.cache
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Debug\MainWindow.g.cs
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Debug\App.g.cs
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Debug\VoiceControl_MarkupCompile.cache
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Debug\VoiceControl_MarkupCompile.lref
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\bin\Debug\VoiceControl.exe.config
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\bin\Debug\VoiceControl.exe
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\bin\Debug\VoiceControl.pdb
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Debug\MainWindow.baml
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Debug\VoiceControl.g.resources
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Debug\VoiceControl.Properties.Resources.resources
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Debug\VoiceControl.csproj.GenerateResource.cache
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Debug\VoiceControl.exe
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Debug\VoiceControl.pdb
