@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Debug\
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Release\
 VoiceControl
 none
 false
-DEBUG;TRACE
+TRACE
 D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\App.xaml
 11151548125
 
-82095383536
+72014853646
 15-1354185435
 MainWindow.xaml;
 

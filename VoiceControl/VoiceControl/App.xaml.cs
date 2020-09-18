@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-using System.Threading;
 
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
@@ -25,7 +24,8 @@ namespace VoiceControl
 
         public static App AppWindow;
         private static SpeechRecognitionEngine Recognizer;
-        
+        private static bool HasProcessed = false;
+
         private string Directory = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
         private State CurrentState = State.Writing;
 
@@ -72,7 +72,7 @@ namespace VoiceControl
                 Recognizer.LoadGrammar(new Grammar(builder));
 
                 Recognizer.SpeechRecognized += recognizer_SpeechRecognized;
-                Recognizer.SpeechHypothesized += recognizer_HypothesizedRecognized;
+                //Recognizer.SpeechHypothesized += recognizer_HypothesizedRecognized;
                 Recognizer.RecognizeCompleted += recognizer_Competed;
 
                 Recognizer.SetInputToDefaultAudioDevice();
@@ -84,23 +84,26 @@ namespace VoiceControl
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.InnerException.Message);
+                System.Windows.MessageBox.Show(ex.InnerException.Message);
             }
         }
 
-        static void recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        static async void recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            Console.WriteLine("Speech found: " + e.Result.Text);
+            Await.Wait(1);
+            Console.WriteLine(e.Result.Text);
         }
 
-        static void recognizer_HypothesizedRecognized(object sender, SpeechHypothesizedEventArgs e)
+        static async void recognizer_HypothesizedRecognized(object sender, SpeechHypothesizedEventArgs e)
         {
-            Console.WriteLine("Hypothesise found: " + e.Result.Text);
+            if (HasProcessed) return;
+            HasProcessed = true;
+            Console.WriteLine(e.Result.Text);
         }
 
         static void recognizer_Competed(object sender, RecognizeCompletedEventArgs e)
         {
-            Console.WriteLine("Completes found: " + e.Result.Text);
+            Console.WriteLine(e.Result.Text);
         }
     }
 }

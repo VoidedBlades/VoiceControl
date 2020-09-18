@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace VoiceControl
 {
@@ -18,6 +19,11 @@ namespace VoiceControl
                     await Task.Yield();
                 }
             }
+        }
+
+        public static void Wait(float TimeLimit)
+        {
+            Thread.Sleep((int)Math.Round(TimeLimit) * 1000);
         }
     }
 }
