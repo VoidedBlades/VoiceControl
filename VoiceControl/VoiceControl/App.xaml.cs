@@ -14,26 +14,20 @@ namespace VoiceControl
 
     public partial class App : Application
     {
-        private enum State
-        {
-            Writing = 0,
-            KeyStroke = 1,
-            Application = 2
-        }
 
 
         public static App AppWindow;
         private static SpeechRecognitionEngine Recognizer;
-        private static bool HasProcessed = false;
 
         private string Directory = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
-        private State CurrentState = State.Writing;
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
             InitializeComponent();
             AppWindow = this;
+
+            VoiceChoices._Startup();
 
             SetupVoiceControl();
         }
@@ -59,26 +53,18 @@ namespace VoiceControl
             try
             {
                 CultureInfo Culture = new CultureInfo(CultureInfo.CurrentCulture.Name);
-                GrammarBuilder builder = new GrammarBuilder();
-                Choices ChoiceList = new Choices("test");
-
-
-                builder.Append(ChoiceList);
-
+                await Await.WaitForMainwindow();
 
                 Recognizer = new SpeechRecognitionEngine(Culture);
 
                 Recognizer.RequestRecognizerUpdate();
-                Recognizer.LoadGrammar(new Grammar(builder));
+                Recognizer.LoadGrammar(VoiceChoices.DefaultChoices);
 
                 Recognizer.SpeechRecognized += recognizer_SpeechRecognized;
                 //Recognizer.SpeechHypothesized += recognizer_HypothesizedRecognized;
-                Recognizer.RecognizeCompleted += recognizer_Competed;
 
                 Recognizer.SetInputToDefaultAudioDevice();
                 Recognizer.RecognizeAsync(RecognizeMode.Multiple);
-
-                await Await.WaitForMainwindow();
 
                 VoiceControl.MainWindow.AppWindow.UpdateLanguageText(CultureInfo.CurrentCulture.Name);
             }
@@ -88,22 +74,38 @@ namespace VoiceControl
             }
         }
 
-        static async void recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        static void recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            Await.Wait(1);
-            Console.WriteLine(e.Result.Text);
+            //Recognizer.RecognizeAsyncStop();
+            Console.WriteLine(e.Result.Confidence);
+            Grammar Results = VoiceChoices.RetrieveChoices(e.Result.Text);
+            Recognizer.RequestRecognizerUpdate();
+            if (Results != null)
+            {
+                Recognizer.UnloadAllGrammars();
+                Recognizer.LoadGrammar(Results);
+            }
+            //Recognizer.RecognizeAsync(RecognizeMode.Multiple);
+
         }
 
-        static async void recognizer_HypothesizedRecognized(object sender, SpeechHypothesizedEventArgs e)
+        static void recognizer_HypothesizedRecognized(object sender, SpeechHypothesizedEventArgs e)
         {
-            if (HasProcessed) return;
-            HasProcessed = true;
-            Console.WriteLine(e.Result.Text);
-        }
+            Console.WriteLine(e.Result.Confidence);
+            Recognizer.RecognizeAsyncStop();
+            if (e.Result.Confidence > .8f)
+            {
+                Recognizer.RequestRecognizerUpdate();
+                Grammar Results = VoiceChoices.RetrieveChoices(e.Result.Text);
+                if (Results != null)
+                {
+                    Recognizer.UnloadAllGrammars();
+                    Recognizer.LoadGrammar(Results);
+                }
+            }
 
-        static void recognizer_Competed(object sender, RecognizeCompletedEventArgs e)
-        {
-            Console.WriteLine(e.Result.Text);
+            Recognizer.RecognizeAsync(RecognizeMode.Single);
+
         }
     }
 }

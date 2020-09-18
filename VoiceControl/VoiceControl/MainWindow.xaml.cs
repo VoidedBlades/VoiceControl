@@ -12,8 +12,6 @@ namespace VoiceControl
         public MainWindow()
         {
             InitializeComponent();
-            
-            Console.WriteLine("applied");
             AppWindow = this;
         }
 

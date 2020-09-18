@@ -12,3 +12,8 @@ D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Debug\Voice
 D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Debug\VoiceControl.csproj.GenerateResource.cache
 D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Debug\VoiceControl.exe
 D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Debug\VoiceControl.pdb
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\bin\Debug\DocumentFormat.OpenXml.dll
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\bin\Debug\System.IO.Packaging.dll
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\bin\Debug\DocumentFormat.OpenXml.xml
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\bin\Debug\System.IO.Packaging.xml
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Debug\VoiceControl.csproj.CopyComplete
