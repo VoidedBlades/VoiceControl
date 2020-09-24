@@ -33,7 +33,7 @@ namespace VoiceControl
             ReferenceDictionary.Add("Final Fantasy", new Choices(
                 "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=",
                 "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A0", "A-", "A=",
-                "S1", "S2", "S3", "S4", "A5", "S6", "S7", "S8", "S9", "S0", "S-", "S=",
+                "C1", "C2",
                 "Exit"
                 ));
 

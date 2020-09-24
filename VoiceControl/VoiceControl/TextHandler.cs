@@ -18,14 +18,14 @@ namespace VoiceControl
         //public static extern IntPtr FindWindow(string lpClassName,
         //    string lpWindowName);
 
-        //[DllImport("user32.dll")]
-        //static extern IntPtr GetForegroundWindow();
+        [DllImport("user32.dll")]
+        static extern IntPtr GetForegroundWindow();
 
         //[DllImport("user32.dll")]
         //public static extern int SetForegroundWindow(IntPtr hWnd);
 
-        //[DllImport("user32.dll", SetLastError = true)]
-        //public static extern IntPtr SetActiveWindow(IntPtr hWnd);
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern IntPtr SetActiveWindow(IntPtr hWnd);
 
         [STAThread]
         public static void ConvertToInputKeystrokes(string Text) 
@@ -33,12 +33,16 @@ namespace VoiceControl
             char[] Characters = Text.ToCharArray();
             string NewString = Text;
 
-            NewString = NewString.Replace('A', '%');
-            NewString = NewString.Replace('S', '+');
-            NewString = NewString.Replace('C', '^');
+            if (Characters[0] == 'A')
+                NewString = "%" + Characters[1];
+            else if (Characters[0] == 'S')
+                NewString = "+" + Characters[1];
+            else if (Characters[0] == 'C')
+                NewString = "^" + Characters[1];
+
 
             Console.WriteLine(NewString);
-            
+            SetActiveWindow(GetForegroundWindow());
             SendKeys.SendWait(NewString);
         }
 
