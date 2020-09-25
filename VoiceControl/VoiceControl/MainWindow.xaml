@@ -5,11 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VoiceControl"
         mc:Ignorable="d"
-        Title="MainWindow" Height="79" Width="245" MaxWidth="245" MaxHeight="79">
+        Title="MainWindow" Height="193" Width="374">
     <Grid>
-        <TextBox TextAlignment="Center" BorderThickness="0" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Mode" VerticalAlignment="Top" Width="235"/>
-        <TextBox x:Name="ModeText" TextAlignment="Center" BorderThickness="0" HorizontalAlignment="Left" Height="21" TextWrapping="Wrap" Text="Default" VerticalAlignment="Top" Width="235" Margin="0,23,0,0"/>
-        <TextBox x:Name="LanguageText" BorderThickness="0" HorizontalAlignment="Left" TextAlignment="Center" Height="18" TextWrapping="Wrap" Text="en-US" VerticalAlignment="Top" Width="59" Margin="176,0,0,0"/>
+        <TextBox x:Name="LanguageText" BorderThickness="0" HorizontalAlignment="Left" TextAlignment="Center" Height="18" TextWrapping="Wrap" Text="en-US" VerticalAlignment="Top" Width="60" Margin="306,0,0,0"/>
+        <Grid IsEnabled="True" x:Name="MainHolder" HorizontalAlignment="Left" Height="115" Margin="22,23,0,0" VerticalAlignment="Top" Width="316">
+            <TextBox TextAlignment="Center" BorderThickness="0" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Text="Mode" VerticalAlignment="Top" Width="236" Margin="40,26,0,0"/>
+            <TextBox x:Name="ModeText" TextAlignment="Center" BorderThickness="0" HorizontalAlignment="Left" Height="22" TextWrapping="Wrap" Text="Default" VerticalAlignment="Top" Width="236" Margin="40,48,0,0"/>
+            <Button Content="Modify Shortcuts" HorizontalAlignment="Left" Margin="50,74,0,0" VerticalAlignment="Top" Width="218"/>
+        </Grid>
 
 
     </Grid>
