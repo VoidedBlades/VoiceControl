@@ -17,3 +17,5 @@ D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\bin\Debug\Syste
 D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\bin\Debug\DocumentFormat.OpenXml.xml
 D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\bin\Debug\System.IO.Packaging.xml
 D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\obj\Debug\VoiceControl.csproj.CopyComplete
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\bin\Debug\Newtonsoft.Json.dll
+D:\school\Jaar 3\Keuzevak\VoiceControl\VoiceControl\VoiceControl\bin\Debug\Newtonsoft.Json.xml

@@ -48,10 +48,39 @@ namespace VoiceControl
             return null;
         }
 
-        public void SetFromPath(string TargetKey)
+        public void SetFromPath(string[] TargetKey)
         {
-            var TargetDictionary = ChoiceList.FindAll(x => x.ContainsKey(TargetKey));
+            
+        }
 
+        private object[] RemoveFirstIndexCopy(object[] Array)
+        {
+            if (Array.Length <= 1) return null;
+            object[] TempArray = new object[Array.Length-1];
+
+            for(int i = 1; i < Array.Length-1; i++)
+            {
+                TempArray[i] = Array[i];
+            }
+
+            return TempArray;
+        }
+
+        private void SetInNested(object Dict, Choices Value, string Targets, Type T)
+        {
+            if (T == typeof(Dictionary<string, List<Choices>>))
+            {
+                Dictionary<string, List<Choices>> TempDict = (Dictionary<string, List<Choices>>)Dict;
+                if (TempDict.ContainsKey(Targets))
+                {
+                    if(Targets != null)
+                        SetInNested(TempDict[Targets], Value, Targets, TempDict[Targets].GetType());
+                }
+            }
+            else if (T == typeof(List<Choices>))
+            {
+
+            }
         }
     }
 }

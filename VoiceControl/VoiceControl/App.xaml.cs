@@ -60,8 +60,8 @@ namespace VoiceControl
                 Recognizer.RequestRecognizerUpdate();
                 Recognizer.LoadGrammar(VoiceChoices.DefaultChoices);
 
-                Recognizer.SpeechRecognized += recognizer_SpeechRecognized;
-                //Recognizer.SpeechHypothesized += recognizer_HypothesizedRecognized;
+                //Recognizer.SpeechRecognized += recognizer_SpeechRecognized;
+                Recognizer.SpeechHypothesized += recognizer_HypothesizedRecognized;
 
                 Recognizer.SetInputToDefaultAudioDevice();
                 Recognizer.RecognizeAsync(RecognizeMode.Multiple);
@@ -77,7 +77,7 @@ namespace VoiceControl
         static void recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             //Recognizer.RecognizeAsyncStop();
-            Console.WriteLine(e.Result.Confidence);
+            Console.WriteLine(e.Result.Text);
             Grammar Results = VoiceChoices.RetrieveChoices(e.Result.Text);
             Recognizer.RequestRecognizerUpdate();
             if (Results != null)
@@ -91,21 +91,17 @@ namespace VoiceControl
 
         static void recognizer_HypothesizedRecognized(object sender, SpeechHypothesizedEventArgs e)
         {
-            Console.WriteLine(e.Result.Confidence);
-            Recognizer.RecognizeAsyncStop();
-            if (e.Result.Confidence > .8f)
+            Console.WriteLine(e.Result.Text);
+            if (e.Result.Confidence > .6f)
             {
-                Recognizer.RequestRecognizerUpdate();
                 Grammar Results = VoiceChoices.RetrieveChoices(e.Result.Text);
+                Recognizer.RequestRecognizerUpdate();
                 if (Results != null)
                 {
                     Recognizer.UnloadAllGrammars();
                     Recognizer.LoadGrammar(Results);
                 }
             }
-
-            Recognizer.RecognizeAsync(RecognizeMode.Single);
-
         }
     }
 }

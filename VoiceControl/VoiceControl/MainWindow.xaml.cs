@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace VoiceControl
 {
@@ -25,5 +26,6 @@ namespace VoiceControl
             LanguageText.Text = s;
 
         }
+
     }
 }
