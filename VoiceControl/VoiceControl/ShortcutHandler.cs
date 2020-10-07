@@ -13,6 +13,11 @@ namespace VoiceControl
     {
 
         private List<Dictionary<string, List<Choices>>> ChoiceList;
+
+        /// <summary>
+        /// Retrieve shortcuts from the saved settings file
+        /// </summary>
+        /// <returns></returns>
         private List<Dictionary<string, List<Choices>>> GetChoices()
         {
             if (!Directory.Exists("C:\\Program Files\\Voice Control"))
@@ -24,6 +29,9 @@ namespace VoiceControl
             return Json.ToObject<List<Dictionary<string, List<Choices>>>>();
         }
 
+        /// <summary>
+        /// Sets the current stack of choices into the settings file
+        /// </summary>
         private void SetChoices()
         {
             if (!Directory.Exists("C:\\Program Files\\Voice Control"))
@@ -36,6 +44,11 @@ namespace VoiceControl
             Writer.Write(Json);
         }
 
+        /// <summary>
+        /// returns the list of choices going from the given key
+        /// </summary>
+        /// <param name="Key"></param>
+        /// <returns></returns>
         public List<Choices> GetChoicesFromKey(string Key)
         {
             if (ChoiceList == null)
@@ -48,24 +61,13 @@ namespace VoiceControl
             return null;
         }
 
-        public void SetFromPath(string[] TargetKey)
-        {
-            
-        }
-
-        private object[] RemoveFirstIndexCopy(object[] Array)
-        {
-            if (Array.Length <= 1) return null;
-            object[] TempArray = new object[Array.Length-1];
-
-            for(int i = 1; i < Array.Length-1; i++)
-            {
-                TempArray[i] = Array[i];
-            }
-
-            return TempArray;
-        }
-
+        /// <summary>
+        /// Sets value in a nested array
+        /// </summary>
+        /// <param name="Dict"></param>
+        /// <param name="Value"></param>
+        /// <param name="Targets"></param>
+        /// <param name="T"></param>
         private void SetInNested(object Dict, Choices Value, string Targets, Type T)
         {
             if (T == typeof(Dictionary<string, List<Choices>>))
