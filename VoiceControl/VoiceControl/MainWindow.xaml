@@ -27,28 +27,20 @@
                     <RowDefinition Height="12*"/>
                     <RowDefinition Height="55*"/>
                 </Grid.RowDefinitions>
-                <ListBox x:Name="GameList" HorizontalAlignment="Left" Height="225" Margin="18,35,0,0" VerticalAlignment="Top" Width="186" Grid.RowSpan="2">
-                    <Border BorderBrush="DarkGray" BorderThickness="1" Height="25">
-                        <Grid Height="24" Width="170">
-                            <Button Content="🗑️" x:Name="Remove" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="149,2,0,0" VerticalAlignment="Top" Height="19" Width="19"/>
-                            <Button Content="✎" x:Name="Modify" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="128,2,0,0" VerticalAlignment="Top" Height="19" Width="19"/>
-                            <Button Content="VoiceText" x:Name="VoiceText" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="2,2,0,0" VerticalAlignment="Top" Height="19" Width="121"/>
-                        </Grid>
-                    </Border>
-                </ListBox>
+                <ListBox x:Name="GameList" HorizontalAlignment="Left" Height="225" Margin="18,35,0,0" VerticalAlignment="Top" Width="186" Grid.RowSpan="2"/>
                 <Label Content="Games" FontSize="15" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="18,0,0,15" VerticalAlignment="Bottom" Height="35" Width="186"/>
                 <TextBox x:Name="GameName" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="29" Margin="18,205.205,0,0" TextWrapping="Wrap" Text="Game name" VerticalAlignment="Top" Width="186" Grid.Row="1"/>
-                <Button x:Name="AddGame" Content="Add Game" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="18,237.205,0,0" VerticalAlignment="Top" Width="186" Height="26" Grid.Row="1"/>
+                <Button x:Name="AddGame" Content="Add Game" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="18,237.205,0,0" VerticalAlignment="Top" Width="186" Height="26" Grid.Row="1" Click="AddGame_Click"/>
                 <Label Content="Shortcuts" FontSize="15" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="228,0,-186,15" VerticalAlignment="Bottom" Height="35" Width="186"/>
             </Grid>
             <Grid x:Name="KeybindGrid" Height="335" Margin="219,10,0,0" VerticalAlignment="Top">
                 <ListBox x:Name="ShortcutList" HorizontalAlignment="Left" Height="288" Margin="18,35,0,0" VerticalAlignment="Top" Width="186">
                     <Border BorderBrush="DarkGray" BorderThickness="1" Height="48">
-                        <Grid Width="170" Height="48" Margin="0,0,0,0">
-                            <Button Content="🗑️" x:Name="Remove1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="149,24,0,0" VerticalAlignment="Top" Height="19" Width="19"/>
-                            <Button Content="✎" x:Name="Modify1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="126,24,0,0" VerticalAlignment="Top" Height="19" Width="19"/>
-                            <Button Content="Recorded Keys" x:Name="Keys" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="2,24,0,0" VerticalAlignment="Top" Height="19" Width="121"/>
-                            <Button Content="PronouncedName" x:Name="PronouncedName" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="2,2,0,0" VerticalAlignment="Top" Height="19" Width="166"/>
+                        <Grid Width="170" Height="48" Margin="0,0,0,-2">
+                            <Button Content="🗑️" x:Name="Remove2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="149,24,0,0" VerticalAlignment="Top" Height="19" Width="19"/>
+                            <Button Content="✎" x:Name="Modify2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="126,24,0,0" VerticalAlignment="Top" Height="19" Width="19"/>
+                            <Button Content="Recorded Keys" x:Name="Keys1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="2,24,0,0" VerticalAlignment="Top" Height="19" Width="121"/>
+                            <Button Content="PronouncedName" x:Name="PronouncedName1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="2,2,0,0" VerticalAlignment="Top" Height="19" Width="166"/>
                         </Grid>
                     </Border>
                 </ListBox>

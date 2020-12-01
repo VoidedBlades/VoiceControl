@@ -6,7 +6,7 @@ using System;
 
 namespace VoiceControl
 {
-    public class VoiceChoices : Application
+    public class VoiceChoices : System.Windows.Application
     {
         private enum State
         {

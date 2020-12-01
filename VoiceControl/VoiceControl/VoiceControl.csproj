@@ -71,6 +71,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Application.cs" />
     <Compile Include="ObjectCreator.cs" />
     <Compile Include="ShortcutHandler.cs" />
     <Compile Include="TextHandler.cs" />

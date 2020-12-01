@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace VoiceControl
 {
 
-    public partial class App : Application
+    public partial class App : System.Windows.Application
     {
 
 

@@ -14,14 +14,14 @@ namespace VoiceControl
     class ObjectCreator
     {
 
-        public static Dictionary<string, Border> GameUIStorage;
-        public static Dictionary<string, Dictionary<string, Border>> ShortcutUIStorage;
+        public static Dictionary<string, Border> GameUIStorage = new Dictionary<string, Border>();
+        public static Dictionary<string, Dictionary<string, Border>> ShortcutUIStorage = new Dictionary<string, Dictionary<string, Border>>();
 
         /// <summary>
         /// wipes the UI data of the given key
         /// </summary>
         /// <param name="Key"></param>
-        public static void WhipeDataFromKey(string Key)
+        public void WhipeDataFromKey(string Key)
         {
             GameUIStorage.Remove(Key);
             ShortcutUIStorage.Remove(Key);
@@ -33,7 +33,7 @@ namespace VoiceControl
         /// <summary>
         /// Converts the dictionary to a list in order to implement it into the wpf
         /// </summary>
-        private static void ConvertAndSetGameElements()
+        private void ConvertAndSetGameElements()
         {
             List<Border> ListedElements = new List<Border>();
 
@@ -42,14 +42,14 @@ namespace VoiceControl
                 ListedElements.Add(Element.Value);
             }
 
-            MainWindow.SetGameItems(ListedElements);
+            MainWindow.AppWindow.SetGameItems(ListedElements);
         }
 
         /// <summary>
         /// Converts the dictionary to a list in order to implement it into the wpf
         /// </summary>
         /// <param name="Key"></param>
-        private static void ConvertAndSetShortcutElements(string Key)
+        private void ConvertAndSetShortcutElements(string Key)
         {
             List<Border> ListedElements = new List<Border>();
 
@@ -62,7 +62,7 @@ namespace VoiceControl
                     break;
                 }
 
-            MainWindow.SetShortcutItems(ListedElements);
+            MainWindow.AppWindow.SetShortcutItems(ListedElements);
         }
 
         /// <summary>
@@ -71,7 +71,10 @@ namespace VoiceControl
         /// <param name="Name"></param>
         public void CreateGameTemplate(string Name)
         {
-            Border Border = new Border() { BorderBrush = Brushes.DarkGray, BorderThickness = new Thickness(1,1,1,1), Height=25 };
+            if (GameUIStorage.ContainsKey(Name)) return;
+
+            Name = Name.Replace(" ", "");
+            Border Border = new Border() { Name = Name, BorderBrush = Brushes.DarkGray, BorderThickness = new Thickness(1,1,1,1), Height=25 };
             Grid Grid = new Grid() {  Height = 24, Width = 170 };
 
             Button SelectorButton = new Button() {
@@ -79,9 +82,11 @@ namespace VoiceControl
                 Name = "Select_" + Name,
                 HorizontalContentAlignment = HorizontalAlignment.Center,
                 VerticalContentAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
                 Margin = new Thickness(2,2,0,0),
                 Height = 19,
-                Width = 121
+                Width = 142
             };
 
             Button DeleteButton = new Button()
@@ -89,30 +94,35 @@ namespace VoiceControl
                 Content = "🗑️",
                 Name = "DeleteButton_" + Name,
                 Margin = new Thickness(149, 2, 0, 0),
-                VerticalContentAlignment = VerticalAlignment.Center,
                 HorizontalContentAlignment = HorizontalAlignment.Center,
+                VerticalContentAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
                 Height = 19,
                 Width = 19
             };
 
-            Button EditButton = new Button()
-            {
-                Content = "✎",
-                Name = "Edit_" + Name,
-                Margin = new Thickness(2, 2, 0, 0),
-                VerticalContentAlignment = VerticalAlignment.Center,
-                HorizontalContentAlignment = HorizontalAlignment.Center,
-                Height = 19,
-                Width = 19
-            };
+            //Button EditButton = new Button()
+            //{
+            //    Content = "✎",
+            //    Name = "Edit_" + Name,
+            //    Margin = new Thickness(2, 2, 0, 0),
+            //    VerticalContentAlignment = VerticalAlignment.Center,
+            //    HorizontalContentAlignment = HorizontalAlignment.Center,
+            //    Height = 19,
+            //    Width = 19
+            //};
 
             Grid.Children.Add(SelectorButton);
             Grid.Children.Add(DeleteButton);
-            Grid.Children.Add(EditButton);
+            //Grid.Children.Add(EditButton);
 
             Border.Child = Grid;
 
             GameUIStorage.Add(Name, Border);
+
+            DeleteButton.Click += DeleteObject;
+
             ConvertAndSetGameElements();
         }
         
@@ -183,6 +193,16 @@ namespace VoiceControl
             ShortcutUIStorage[Game].Add(Name, Border);
 
             ConvertAndSetShortcutElements(Game);
+        }
+
+        private void DeleteObject(object sender, RoutedEventArgs e)
+        {
+            Button _button = e.Source as Button;
+            string _name = _button.Name.Split('_')[1];
+
+            GameUIStorage.Remove(_name);
+
+            ConvertAndSetGameElements();
         }
     }
 }
