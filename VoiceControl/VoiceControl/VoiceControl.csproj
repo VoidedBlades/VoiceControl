@@ -72,9 +72,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Application.cs" />
+    <Compile Include="Keyboard.cs" />
     <Compile Include="ObjectCreator.cs" />
     <Compile Include="ShortcutHandler.cs" />
     <Compile Include="TextHandler.cs" />
+    <Compile Include="Todo.cs" />
     <Compile Include="VoiceChoices.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

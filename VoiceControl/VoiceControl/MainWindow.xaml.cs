@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace VoiceControl
 {
@@ -17,6 +18,13 @@ namespace VoiceControl
 
         private static ObjectCreator Creator = new ObjectCreator();
 
+        public string SelectedGame;
+        public bool Recording;
+        public KeyConverter Key_Converter;
+        public Keyboard KeyboardInput;
+
+        public List<Key> KeysPressed;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -25,12 +33,11 @@ namespace VoiceControl
             ShortcutList_Internal = ShortcutList;
             GameList_Internal = GameList;
 
-            GameName.GotFocus += GameTextBoxOnFocus;
-        }
+            KeysPressed = new List<Key>();
+            Key_Converter = new KeyConverter();
 
-        public void UpdateModeText(string s)
-        {
-            ModeText.Text = s;
+            GameName.GotFocus += TextBoxOnFocus;
+            KeybindPronounce.GotFocus += TextBoxOnFocus;
         }
 
         public void UpdateLanguageText(string s)
@@ -38,6 +45,20 @@ namespace VoiceControl
             LanguageText.Text = s;
         }
         
+        public void UpdateSelectedGame(string s)
+        {
+            if (s == null)
+            {
+                SelectedGame = null;
+                SelectedGameText.Content = "No game selected";
+            }
+            else
+            {
+                SelectedGame = s;
+                SelectedGameText.Content = s.Replace("1a44d2", " ");
+            }
+        }
+
         public void SetGameItems(List<Border> _List)
         {
             GameList_Internal.ItemsSource = null;
@@ -56,9 +77,38 @@ namespace VoiceControl
             GameName.Text = "Game Name";
         }
 
-        private void GameTextBoxOnFocus(object sender, RoutedEventArgs e)
+        private void TextBoxOnFocus(object sender, RoutedEventArgs e)
         {
-            GameName.Text = "";
+            TextBox textBox = e.Source as TextBox;
+            textBox.Text = "";
+        }
+
+        private void AddKeybind_Click(object sender, RoutedEventArgs e)
+        {
+            Creator.CreateShortcutTemplate(SelectedGame, KeybindPronounce.Text);
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Recording && SelectedGame != null && KeysPressed.Count < 4)
+            {
+                KeyComboDisplay.Content += (string)KeyComboDisplay.Content == "" ? Key_Converter.ConvertToString(e.Key) : " + " + Key_Converter.ConvertToString(e.Key);
+                KeysPressed.Add(e.Key);
+            }
+        }
+
+        private void RecordKey_Click(object sender, RoutedEventArgs e)
+        {
+            Recording = !Recording;
+
+            if (Recording)
+            {
+                KeyComboDisplay.Content = "";
+                KeysPressed.Clear();
+                RecordKey.Content = "Finish Recording";
+            }
+            else
+                RecordKey.Content = "Record Keycombo";
         }
     }
 }

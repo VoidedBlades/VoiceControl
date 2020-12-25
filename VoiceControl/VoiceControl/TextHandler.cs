@@ -14,38 +14,21 @@ namespace VoiceControl
     class TextHandler
     {
 
-        //[DllImport("USER32.DLL", CharSet = CharSet.Unicode)]
-        //public static extern IntPtr FindWindow(string lpClassName,
-        //    string lpWindowName);
-
-        [DllImport("user32.dll")]
-        static extern IntPtr GetForegroundWindow();
-
-        //[DllImport("user32.dll")]
-        //public static extern int SetForegroundWindow(IntPtr hWnd);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern IntPtr SetActiveWindow(IntPtr hWnd);
-
         [STAThread]
         public static void ConvertToInputKeystrokes(string Text) 
         {
-            char[] Characters = Text.ToCharArray();
-            string NewString = Text;
+            string[] keys_String = Text.Split(' ');
+            List<Keyboard.ScanCodeShort> Keys = new List<Keyboard.ScanCodeShort>();
 
-            if (Characters[0] == 'A')
-                NewString = "%" + Characters[1];
-            else if (Characters[0] == 'S')
-                NewString = "+" + Characters[1];
-            else if (Characters[0] == 'C')
-                NewString = "^" + Characters[1];
+            for(int i = 0; i < keys_String.Length-1; i++)
+            {
+                Keyboard.ScanCodeShort key = (Keyboard.ScanCodeShort)System.Enum.Parse(typeof(Keyboard.ScanCodeShort), Text);
+                Keys.Add(key);
+            }
 
+            MainWindow.AppWindow.KeyboardInput.Send(Keys);
 
-            Console.WriteLine(NewString);
-            SetActiveWindow(GetForegroundWindow());
-            SendKeys.SendWait(NewString);
         }
-
         public static void Write(string Text)
         {
             SendKeys.SendWait(Text);

@@ -16,6 +16,7 @@ namespace VoiceControl
         private Dictionary<string, Choices> GameShortcuts;
 
         private List<Dictionary<string, Choices>> ChoiceList;
+        private List<Dictionary<Choices, Keyboard.ScanCodeShort>> Keyevents;
         /// <summary>
         /// Retrieve shortcuts from the saved settings file
         /// </summary>

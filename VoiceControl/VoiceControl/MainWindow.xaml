@@ -5,14 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VoiceControl"
         mc:Ignorable="d"
+        KeyDown="Window_KeyDown"
         Title="MainWindow" Height="386.775" Width="669.5">
     <Grid Margin="0,0,351,0">
-        <TextBox x:Name="LanguageText" BorderThickness="0" HorizontalAlignment="Left" TextAlignment="Center" Height="18" TextWrapping="Wrap" Text="en-US" VerticalAlignment="Top" Width="60" Margin="460,0,0,0"/>
-        <Grid Visibility="Hidden" x:Name="MainHolder" HorizontalAlignment="Left" Height="336" Margin="10,10,-342,0" VerticalAlignment="Top" Width="643">
-            <TextBox TextAlignment="Center" FontSize="25" BorderThickness="0" HorizontalAlignment="Left" Height="46" TextWrapping="Wrap" Text="Mode" VerticalAlignment="Top" Width="496" Margin="66,95,0,0"/>
-            <TextBox x:Name="ModeText" FontSize="25" TextAlignment="Center" BorderThickness="0" HorizontalAlignment="Left" Height="47" TextWrapping="Wrap" Text="Default" VerticalAlignment="Top" Width="496" Margin="66,146,0,0"/>
-            <Button Content="Modify Shortcuts" FontSize="25" HorizontalAlignment="Left" Margin="85,198,0,0" VerticalAlignment="Top" Width="458" Height="42"/>
-        </Grid>
+        <TextBox x:Name="LanguageText" BorderThickness="0" HorizontalAlignment="Left" TextAlignment="Center" Height="18" TextWrapping="Wrap" Text="en-US" VerticalAlignment="Top" Width="60" Margin="599,4,-348,0"/>
         <Grid Visibility="Visible" x:Name="Game_Overview" HorizontalAlignment="Left" Height="346" Margin="3,-2,-340,0" VerticalAlignment="Top" Width="648" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
                 <TransformGroup>
@@ -34,22 +30,14 @@
                 <Label Content="Shortcuts" FontSize="15" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="228,0,-186,15" VerticalAlignment="Bottom" Height="35" Width="186"/>
             </Grid>
             <Grid x:Name="KeybindGrid" Height="335" Margin="219,10,0,0" VerticalAlignment="Top">
-                <ListBox x:Name="ShortcutList" HorizontalAlignment="Left" Height="288" Margin="18,35,0,0" VerticalAlignment="Top" Width="186">
-                    <Border BorderBrush="DarkGray" BorderThickness="1" Height="48">
-                        <Grid Width="170" Height="48" Margin="0,0,0,-2">
-                            <Button Content="🗑️" x:Name="Remove2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="149,24,0,0" VerticalAlignment="Top" Height="19" Width="19"/>
-                            <Button Content="✎" x:Name="Modify2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="126,24,0,0" VerticalAlignment="Top" Height="19" Width="19"/>
-                            <Button Content="Recorded Keys" x:Name="Keys1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="2,24,0,0" VerticalAlignment="Top" Height="19" Width="121"/>
-                            <Button Content="PronouncedName" x:Name="PronouncedName1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="2,2,0,0" VerticalAlignment="Top" Height="19" Width="166"/>
-                        </Grid>
-                    </Border>
-                </ListBox>
-                <TextBox x:Name="KeybindCommand" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="29" Margin="225,232,0,0" TextWrapping="Wrap" Text="Pronounced Name" VerticalAlignment="Top" Width="186"/>
-                <Button x:Name="AddKeybind" Content="Add Shortcut" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="225,297,0,0" VerticalAlignment="Top" Width="186" Height="26"/>
-                <Button x:Name="RecordKey" Content="Record Keycombo" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="225,266,0,0" VerticalAlignment="Top" Width="186" Height="26"/>
+                <ListBox x:Name="ShortcutList" HorizontalAlignment="Left" Height="288" Margin="18,35,0,0" VerticalAlignment="Top" Width="186"/>
+                <TextBox x:Name="KeybindPronounce" FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="29" Margin="225,232,0,0" TextWrapping="Wrap" Text="Pronounced Name" VerticalAlignment="Top" Width="186"/>
+                <Button x:Name="AddKeybind" Content="Add Shortcut" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="225,297,0,0" VerticalAlignment="Top" Width="186" Height="26" Click="AddKeybind_Click"/>
+                <Button x:Name="RecordKey" Content="Record Keycombo" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="225,266,0,0" VerticalAlignment="Top" Width="186" Height="26" Click="RecordKey_Click"/>
                 <Label Content="Selected Game" FontSize="15" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="209,0,0,191" VerticalAlignment="Bottom" Height="35" Width="210"/>
 
                 <Label x:Name="SelectedGameText" Content="None" FontSize="14" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="209,0,0,178" VerticalAlignment="Bottom" Height="27" Width="210"/>
+                <Label x:Name="KeyComboDisplay" Content="" FontSize="14" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="225,0,0,108" VerticalAlignment="Bottom" Height="27" Width="186"/>
             </Grid>
         </Grid>
     </Grid>
