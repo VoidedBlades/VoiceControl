@@ -9,39 +9,53 @@ using Newtonsoft.Json.Linq;
 
 namespace VoiceControl
 {
-    class ShortcutHandler
+    public class ShortcutHandler
     {
+        public Dictionary<string, List<string>> ChoiceList { get; private set; }
+        public Dictionary<string, Dictionary<string, List<Keyboard.ScanCodeShort>>> Keyevents { get; private set; }
 
-        private static List<string> Games;
-        private Dictionary<string, Choices> GameShortcuts;
 
-        private List<Dictionary<string, Choices>> ChoiceList;
-        private List<Dictionary<Choices, Keyboard.ScanCodeShort>> Keyevents;
-        /// <summary>
-        /// Retrieve shortcuts from the saved settings file
-        /// </summary>
-        /// <returns></returns>
-        private List<Dictionary<string, Choices>> GetChoices()
+        public void LoadChoices()
         {
-            if (!Directory.Exists("C:\\Program Files\\Voice Control"))
-                Directory.CreateDirectory("C:\\Program Files\\Voice control");
-
             StreamReader Reader = new StreamReader("C:\\Program Files\\VoiceControl\\Shortcuts.txt");
             JObject Json = JObject.Parse(Reader.ReadToEnd());
 
-            return Json.ToObject<List<Dictionary<string, Choices>>>();
+            Dictionary<object, object> parsed = Json.ToObject<Dictionary<object, object>>();
+
+            ChoiceList = (parsed["ChoiceList"] != null) ? (Dictionary<string, List<string>>)parsed["ChoiceList"] : new Dictionary<string, List<string>>();
+            Keyevents = (parsed["KeyEvents"] != null) ? (Dictionary<string, Dictionary<string, List<Keyboard.ScanCodeShort>>>)parsed["KeyEvents"] : new Dictionary<string, Dictionary<string, List<Keyboard.ScanCodeShort>>>();
+            
+            foreach(KeyValuePair<string, List<string>> _result in ChoiceList)
+            {
+                MainWindow.AppWindow.Creator.CreateGameTemplate(_result.Key);
+
+                // this is where I left off
+                //foreach(string choice in _result.Value)
+
+
+                //MainWindow.AppWindow.Creator.CreateShortcutTemplate();
+            }
+        
         }
 
         /// <summary>
         /// Sets the current stack of choices into the settings file
         /// </summary>
-        private void SaveChoices()
+        public void SaveChoices()
         {
             if (!Directory.Exists("C:\\Program Files\\Voice Control"))
                 Directory.CreateDirectory("C:\\Program Files\\Voice control");
 
             StreamWriter Writer = new StreamWriter("C:\\Program Files\\VoiceControl\\Shortcuts.txt");
-            JObject JsonObject = JObject.FromObject(ChoiceList);
+
+            Dictionary<string, object> parseToSinglelist = new Dictionary<string, object>()
+            {
+                { "ChoiceList", ChoiceList },
+                { "KeyEvents", Keyevents },
+            };
+            
+
+            JObject JsonObject = JObject.FromObject(parseToSinglelist);
 
             string Json = JsonObject.ToString();
             Writer.Write(Json);
@@ -52,16 +66,14 @@ namespace VoiceControl
         /// </summary>
         /// <param name="Key"></param>
         /// <returns></returns>
-        public Choices GetChoicesFromKey(string Key)
+        public Choices GetChoicesFromKey(string Game)
         {
-            if (ChoiceList == null)
-                ChoiceList = GetChoices();
+            Choices _choices = new Choices();
 
-            foreach(Dictionary<string, Choices> ChoiceSum in ChoiceList)
-                if (ChoiceSum.ContainsKey(Key))
-                    return ChoiceSum[Key];
+            foreach (string choice in ChoiceList[Game])
+                _choices.Add(choice);
 
-            return null;
+            return _choices;
         }
 
         /// <summary>
@@ -69,16 +81,16 @@ namespace VoiceControl
         /// </summary>
         /// <param name="Target"></param>
         /// <param name="Value"></param>
-        private void AddChoices(string Game, string Value)
+        public void AddChoices(string Game, string Value, List<Keyboard.ScanCodeShort> keycode)
         {
-            for(int index = 0; index < ChoiceList.Count-1; index++)
-            {
-                if (ChoiceList[index].ContainsKey(Game))
-                {
-                    ChoiceList[index][Game].Add(Value);
-                    break;
-                }
-            }
+            if (!ChoiceList.ContainsKey(Game))
+                ChoiceList.Add(Game, new List<string>());
+
+            ChoiceList[Game].Add(Value);
+            if (!Keyevents.ContainsKey(Game))
+                Keyevents.Add(Game, new Dictionary<string, List<Keyboard.ScanCodeShort>>());
+
+            Keyevents[Game].Add(Value, keycode);
         }
     }
 }

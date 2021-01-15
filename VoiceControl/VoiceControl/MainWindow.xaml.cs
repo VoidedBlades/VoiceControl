@@ -15,8 +15,8 @@ namespace VoiceControl
 
         private static ListBox ShortcutList_Internal;
         private static ListBox GameList_Internal;
-
-        private static ObjectCreator Creator = new ObjectCreator();
+        public ShortcutHandler shortcutHandler;
+        public ObjectCreator Creator;
 
         public string SelectedGame;
         public bool Recording;
@@ -33,8 +33,13 @@ namespace VoiceControl
             ShortcutList_Internal = ShortcutList;
             GameList_Internal = GameList;
 
+            shortcutHandler = new ShortcutHandler();
+            Creator = new ObjectCreator();
+
             KeysPressed = new List<Key>();
             Key_Converter = new KeyConverter();
+
+            shortcutHandler.LoadChoices();
 
             GameName.GotFocus += TextBoxOnFocus;
             KeybindPronounce.GotFocus += TextBoxOnFocus;
@@ -86,6 +91,13 @@ namespace VoiceControl
         private void AddKeybind_Click(object sender, RoutedEventArgs e)
         {
             Creator.CreateShortcutTemplate(SelectedGame, KeybindPronounce.Text);
+
+            List<Keyboard.ScanCodeShort> _list = new List<Keyboard.ScanCodeShort>();
+
+            foreach (Key _key in KeysPressed)
+                _list.Add((Keyboard.ScanCodeShort)Enum.Parse(typeof(Keyboard.ScanCodeShort), _key.ToString().ToUpper()));
+
+            shortcutHandler.AddChoices(SelectedGame, KeybindPronounce.Text, _list);
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -109,6 +121,11 @@ namespace VoiceControl
             }
             else
                 RecordKey.Content = "Record Keycombo";
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            shortcutHandler.SaveChoices();
         }
     }
 }

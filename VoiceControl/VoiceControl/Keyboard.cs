@@ -84,7 +84,7 @@ namespace VoiceControl
             ABSOLUTE = 0x8000,
             HWHEEL = 0x01000,
             MOVE = 0x0001,
-            MOVE_NOCOALESCE = 0x2000,
+            MOVELAUNCHNOCOALESCE = 0x2000,
             LEFTDOWN = 0x0002,
             LEFTUP = 0x0004,
             RIGHTDOWN = 0x0008,
@@ -289,147 +289,147 @@ namespace VoiceControl
             ///<summary>
             ///0 key
             ///</summary>
-            KEY_0 = 0x30,
+            D0 = 0x30,
             ///<summary>
             ///1 key
             ///</summary>
-            KEY_1 = 0x31,
+            D1 = 0x31,
             ///<summary>
             ///2 key
             ///</summary>
-            KEY_2 = 0x32,
+            D2 = 0x32,
             ///<summary>
             ///3 key
             ///</summary>
-            KEY_3 = 0x33,
+            D3 = 0x33,
             ///<summary>
             ///4 key
             ///</summary>
-            KEY_4 = 0x34,
+            D4 = 0x34,
             ///<summary>
             ///5 key
             ///</summary>
-            KEY_5 = 0x35,
+            D5 = 0x35,
             ///<summary>
             ///6 key
             ///</summary>
-            KEY_6 = 0x36,
+            D6 = 0x36,
             ///<summary>
             ///7 key
             ///</summary>
-            KEY_7 = 0x37,
+            D7 = 0x37,
             ///<summary>
             ///8 key
             ///</summary>
-            KEY_8 = 0x38,
+            D8 = 0x38,
             ///<summary>
             ///9 key
             ///</summary>
-            KEY_9 = 0x39,
+            D9 = 0x39,
             ///<summary>
             ///A key
             ///</summary>
-            KEY_A = 0x41,
+            A = 0x41,
             ///<summary>
             ///B key
             ///</summary>
-            KEY_B = 0x42,
+            B = 0x42,
             ///<summary>
             ///C key
             ///</summary>
-            KEY_C = 0x43,
+            C = 0x43,
             ///<summary>
             ///D key
             ///</summary>
-            KEY_D = 0x44,
+            D = 0x44,
             ///<summary>
             ///E key
             ///</summary>
-            KEY_E = 0x45,
+            E = 0x45,
             ///<summary>
             ///F key
             ///</summary>
-            KEY_F = 0x46,
+            F = 0x46,
             ///<summary>
             ///G key
             ///</summary>
-            KEY_G = 0x47,
+            G = 0x47,
             ///<summary>
             ///H key
             ///</summary>
-            KEY_H = 0x48,
+            H = 0x48,
             ///<summary>
             ///I key
             ///</summary>
-            KEY_I = 0x49,
+            I = 0x49,
             ///<summary>
             ///J key
             ///</summary>
-            KEY_J = 0x4A,
+            J = 0x4A,
             ///<summary>
             ///K key
             ///</summary>
-            KEY_K = 0x4B,
+            K = 0x4B,
             ///<summary>
             ///L key
             ///</summary>
-            KEY_L = 0x4C,
+            L = 0x4C,
             ///<summary>
             ///M key
             ///</summary>
-            KEY_M = 0x4D,
+            M = 0x4D,
             ///<summary>
             ///N key
             ///</summary>
-            KEY_N = 0x4E,
+            N = 0x4E,
             ///<summary>
             ///O key
             ///</summary>
-            KEY_O = 0x4F,
+            O = 0x4F,
             ///<summary>
             ///P key
             ///</summary>
-            KEY_P = 0x50,
+            P = 0x50,
             ///<summary>
             ///Q key
             ///</summary>
-            KEY_Q = 0x51,
+            Q = 0x51,
             ///<summary>
             ///R key
             ///</summary>
-            KEY_R = 0x52,
+            R = 0x52,
             ///<summary>
             ///S key
             ///</summary>
-            KEY_S = 0x53,
+            S = 0x53,
             ///<summary>
             ///T key
             ///</summary>
-            KEY_T = 0x54,
+            T = 0x54,
             ///<summary>
             ///U key
             ///</summary>
-            KEY_U = 0x55,
+            U = 0x55,
             ///<summary>
             ///V key
             ///</summary>
-            KEY_V = 0x56,
+            V = 0x56,
             ///<summary>
             ///W key
             ///</summary>
-            KEY_W = 0x57,
+            W = 0x57,
             ///<summary>
             ///X key
             ///</summary>
-            KEY_X = 0x58,
+            X = 0x58,
             ///<summary>
             ///Y key
             ///</summary>
-            KEY_Y = 0x59,
+            Y = 0x59,
             ///<summary>
             ///Z key
             ///</summary>
-            KEY_Z = 0x5A,
+            Z = 0x5A,
             ///<summary>
             ///Left Windows key (Microsoft Natural keyboard) 
             ///</summary>
@@ -641,135 +641,135 @@ namespace VoiceControl
             ///<summary>
             ///Windows 2000/XP: Browser Back key
             ///</summary>
-            BROWSER_BACK = 0xA6,
+            BROWSERBACK = 0xA6,
             ///<summary>
             ///Windows 2000/XP: Browser Forward key
             ///</summary>
-            BROWSER_FORWARD = 0xA7,
+            BROWSERFORWARD = 0xA7,
             ///<summary>
             ///Windows 2000/XP: Browser Refresh key
             ///</summary>
-            BROWSER_REFRESH = 0xA8,
+            BROWSERREFRESH = 0xA8,
             ///<summary>
             ///Windows 2000/XP: Browser Stop key
             ///</summary>
-            BROWSER_STOP = 0xA9,
+            BROWSERSTOP = 0xA9,
             ///<summary>
             ///Windows 2000/XP: Browser Search key 
             ///</summary>
-            BROWSER_SEARCH = 0xAA,
+            BROWSERSEARCH = 0xAA,
             ///<summary>
             ///Windows 2000/XP: Browser Favorites key
             ///</summary>
-            BROWSER_FAVORITES = 0xAB,
+            BROWSERFAVORITES = 0xAB,
             ///<summary>
             ///Windows 2000/XP: Browser Start and Home key
             ///</summary>
-            BROWSER_HOME = 0xAC,
+            BROWSERHOME = 0xAC,
             ///<summary>
             ///Windows 2000/XP: Volume Mute key
             ///</summary>
-            VOLUME_MUTE = 0xAD,
+            VOLUMELAUNCHMUTE = 0xAD,
             ///<summary>
             ///Windows 2000/XP: Volume Down key
             ///</summary>
-            VOLUME_DOWN = 0xAE,
+            VOLUMELAUNCHDOWN = 0xAE,
             ///<summary>
             ///Windows 2000/XP: Volume Up key
             ///</summary>
-            VOLUME_UP = 0xAF,
+            VOLUMELAUNCHUP = 0xAF,
             ///<summary>
             ///Windows 2000/XP: Next Track key
             ///</summary>
-            MEDIA_NEXT_TRACK = 0xB0,
+            MEDIALAUNCHNEXTLAUNCHTRACK = 0xB0,
             ///<summary>
             ///Windows 2000/XP: Previous Track key
             ///</summary>
-            MEDIA_PREV_TRACK = 0xB1,
+            MEDIALAUNCHPREVLAUNCHTRACK = 0xB1,
             ///<summary>
             ///Windows 2000/XP: Stop Media key
             ///</summary>
-            MEDIA_STOP = 0xB2,
+            MEDIALAUNCHSTOP = 0xB2,
             ///<summary>
             ///Windows 2000/XP: Play/Pause Media key
             ///</summary>
-            MEDIA_PLAY_PAUSE = 0xB3,
+            MEDIALAUNCHPLAYLAUNCHPAUSE = 0xB3,
             ///<summary>
             ///Windows 2000/XP: Start Mail key
             ///</summary>
-            LAUNCH_MAIL = 0xB4,
+            LAUNCHMAIL = 0xB4,
             ///<summary>
             ///Windows 2000/XP: Select Media key
             ///</summary>
-            LAUNCH_MEDIA_SELECT = 0xB5,
+            LAUNCHMEDIALAUNCHSELECT = 0xB5,
             ///<summary>
             ///Windows 2000/XP: Start Application 1 key
             ///</summary>
-            LAUNCH_APP1 = 0xB6,
+            LAUNCHAPP1 = 0xB6,
             ///<summary>
             ///Windows 2000/XP: Start Application 2 key
             ///</summary>
-            LAUNCH_APP2 = 0xB7,
+            LAUNCHAPP2 = 0xB7,
             ///<summary>
             ///Used for miscellaneous characters; it can vary by keyboard.
             ///</summary>
-            OEM_1 = 0xBA,
+            OEM1 = 0xBA,
             ///<summary>
             ///Windows 2000/XP: For any country/region, the '+' key
             ///</summary>
-            OEM_PLUS = 0xBB,
+            OEMPLUS = 0xBB,
             ///<summary>
             ///Windows 2000/XP: For any country/region, the ',' key
             ///</summary>
-            OEM_COMMA = 0xBC,
+            OEMCOMMA = 0xBC,
             ///<summary>
             ///Windows 2000/XP: For any country/region, the '-' key
             ///</summary>
-            OEM_MINUS = 0xBD,
+            OEMMINUS = 0xBD,
             ///<summary>
             ///Windows 2000/XP: For any country/region, the '.' key
             ///</summary>
-            OEM_PERIOD = 0xBE,
+            OEMPERIOD = 0xBE,
             ///<summary>
             ///Used for miscellaneous characters; it can vary by keyboard.
             ///</summary>
-            OEM_2 = 0xBF,
+            OEM2 = 0xBF,
             ///<summary>
             ///Used for miscellaneous characters; it can vary by keyboard. 
             ///</summary>
-            OEM_3 = 0xC0,
+            OEM3 = 0xC0,
             ///<summary>
             ///Used for miscellaneous characters; it can vary by keyboard. 
             ///</summary>
-            OEM_4 = 0xDB,
+            OEM4 = 0xDB,
             ///<summary>
             ///Used for miscellaneous characters; it can vary by keyboard. 
             ///</summary>
-            OEM_5 = 0xDC,
+            OEM5 = 0xDC,
             ///<summary>
             ///Used for miscellaneous characters; it can vary by keyboard. 
             ///</summary>
-            OEM_6 = 0xDD,
+            OEM6 = 0xDD,
             ///<summary>
             ///Used for miscellaneous characters; it can vary by keyboard. 
             ///</summary>
-            OEM_7 = 0xDE,
+            OEM7 = 0xDE,
             ///<summary>
             ///Used for miscellaneous characters; it can vary by keyboard.
             ///</summary>
-            OEM_8 = 0xDF,
+            OEM8 = 0xDF,
             ///<summary>
             ///Windows 2000/XP: Either the angle bracket key or the backslash key on the RT 102-key keyboard
             ///</summary>
-            OEM_102 = 0xE2,
+            OEM102 = 0xE2,
             ///<summary>
             ///Windows 95/98/Me, Windows NT 4.0, Windows 2000/XP: IME PROCESS key
             ///</summary>
             PROCESSKEY = 0xE5,
             ///<summary>
             ///Windows 2000/XP: Used to pass Unicode characters as if they were keystrokes.
-            ///The VK_PACKET key is the low word of a 32-bit Virtual Key value used for non-keyboard input methods. For more information,
-            ///see Remark in KEYBDINPUT, SendInput, WM_KEYDOWN, and WM_KEYUP
+            ///The VKLAUNCHPACKET key is the low word of a 32-bit Virtual Key value used for non-keyboard input methods. For more information,
+            ///see Remark in KEYBDINPUT, SendInput, WMLAUNCHKEYDOWN, and WMLAUNCHKEYUP
             ///</summary>
             PACKET = 0xE7,
             ///<summary>
@@ -807,7 +807,7 @@ namespace VoiceControl
             ///<summary>
             ///Clear key
             ///</summary>
-            OEM_CLEAR = 0xFE
+            OEMCLEAR = 0xFE
         }
 
         public enum ScanCodeShort : short
@@ -854,42 +854,42 @@ namespace VoiceControl
             INSERT = 82,
             DELETE = 83,
             HELP = 99,
-            KEY_0 = 11,
-            KEY_1 = 2,
-            KEY_2 = 3,
-            KEY_3 = 4,
-            KEY_4 = 5,
-            KEY_5 = 6,
-            KEY_6 = 7,
-            KEY_7 = 8,
-            KEY_8 = 9,
-            KEY_9 = 10,
-            KEY_A = 30,
-            KEY_B = 48,
-            KEY_C = 46,
-            KEY_D = 32,
-            KEY_E = 18,
-            KEY_F = 33,
-            KEY_G = 34,
-            KEY_H = 35,
-            KEY_I = 23,
-            KEY_J = 36,
-            KEY_K = 37,
-            KEY_L = 38,
-            KEY_M = 50,
-            KEY_N = 49,
-            KEY_O = 24,
-            KEY_P = 25,
-            KEY_Q = 16,
-            KEY_R = 19,
-            KEY_S = 31,
-            KEY_T = 20,
-            KEY_U = 22,
-            KEY_V = 47,
-            KEY_W = 17,
-            KEY_X = 45,
-            KEY_Y = 21,
-            KEY_Z = 44,
+            D0 = 11,
+            D1 = 2,
+            D2 = 3,
+            D3 = 4,
+            D4 = 5,
+            D5 = 6,
+            D6 = 7,
+            D7 = 8,
+            D8 = 9,
+            D9 = 10,
+            A = 30,
+            B = 48,
+            C = 46,
+            D = 32,
+            E = 18,
+            F = 33,
+            G = 34,
+            H = 35,
+            I = 23,
+            J = 36,
+            K = 37,
+            L = 38,
+            M = 50,
+            N = 49,
+            O = 24,
+            P = 25,
+            Q = 16,
+            R = 19,
+            S = 31,
+            T = 20,
+            U = 22,
+            V = 47,
+            W = 17,
+            X = 45,
+            Y = 21,
+            Z = 44,
             LWIN = 91,
             RWIN = 92,
             APPS = 93,
@@ -942,37 +942,37 @@ namespace VoiceControl
             RCONTROL = 29,
             LMENU = 56,
             RMENU = 56,
-            BROWSER_BACK = 106,
-            BROWSER_FORWARD = 105,
-            BROWSER_REFRESH = 103,
-            BROWSER_STOP = 104,
-            BROWSER_SEARCH = 101,
-            BROWSER_FAVORITES = 102,
-            BROWSER_HOME = 50,
-            VOLUME_MUTE = 32,
-            VOLUME_DOWN = 46,
-            VOLUME_UP = 48,
-            MEDIA_NEXT_TRACK = 25,
-            MEDIA_PREV_TRACK = 16,
-            MEDIA_STOP = 36,
-            MEDIA_PLAY_PAUSE = 34,
-            LAUNCH_MAIL = 108,
-            LAUNCH_MEDIA_SELECT = 109,
-            LAUNCH_APP1 = 107,
-            LAUNCH_APP2 = 33,
-            OEM_1 = 39,
-            OEM_PLUS = 13,
-            OEM_COMMA = 51,
-            OEM_MINUS = 12,
-            OEM_PERIOD = 52,
-            OEM_2 = 53,
-            OEM_3 = 41,
-            OEM_4 = 26,
-            OEM_5 = 43,
-            OEM_6 = 27,
-            OEM_7 = 40,
-            OEM_8 = 0,
-            OEM_102 = 86,
+            BROWSERBACK = 106,
+            BROWSERFORWARD = 105,
+            BROWSERREFRESH = 103,
+            BROWSERSTOP = 104,
+            BROWSERSEARCH = 101,
+            BROWSERFAVORITES = 102,
+            BROWSERHOME = 50,
+            VOLUMELAUNCHMUTE = 32,
+            VOLUMELAUNCHDOWN = 46,
+            VOLUMELAUNCHUP = 48,
+            MEDIALAUNCHNEXTLAUNCHTRACK = 25,
+            MEDIALAUNCHPREVLAUNCHTRACK = 16,
+            MEDIALAUNCHSTOP = 36,
+            MEDIALAUNCHPLAYLAUNCHPAUSE = 34,
+            LAUNCHMAIL = 108,
+            LAUNCHMEDIALAUNCHSELECT = 109,
+            LAUNCHAPP1 = 107,
+            LAUNCHAPP2 = 33,
+            OEM1 = 39,
+            OEMPLUS = 13,
+            OEMCOMMA = 51,
+            OEMMINUS = 12,
+            OEMPERIOD = 52,
+            OEM2 = 53,
+            OEM3 = 41,
+            OEM4 = 26,
+            OEM5 = 43,
+            OEM6 = 27,
+            OEM7 = 40,
+            OEM8 = 0,
+            OEM102 = 86,
             PROCESSKEY = 0,
             PACKET = 0,
             ATTN = 0,
@@ -983,7 +983,7 @@ namespace VoiceControl
             ZOOM = 98,
             NONAME = 0,
             PA1 = 0,
-            OEM_CLEAR = 0,
+            OEMCLEAR = 0,
         }
 
         /// <summary>

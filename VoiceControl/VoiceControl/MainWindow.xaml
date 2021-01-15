@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:VoiceControl"
         mc:Ignorable="d"
         KeyDown="Window_KeyDown"
+        Closing="Window_Closing"
         Title="MainWindow" Height="386.775" Width="669.5">
     <Grid Margin="0,0,351,0">
         <TextBox x:Name="LanguageText" BorderThickness="0" HorizontalAlignment="Left" TextAlignment="Center" Height="18" TextWrapping="Wrap" Text="en-US" VerticalAlignment="Top" Width="60" Margin="599,4,-348,0"/>

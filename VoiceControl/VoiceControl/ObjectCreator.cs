@@ -11,7 +11,7 @@ using System.Speech.Recognition;
 
 namespace VoiceControl
 {
-    class ObjectCreator
+    public class ObjectCreator
     {
 
         public static Dictionary<string, Border> GameUIStorage = new Dictionary<string, Border>();
@@ -205,7 +205,6 @@ namespace VoiceControl
                 ShortcutUIStorage.Add(Game, new Dictionary<string, Border>());
 
             ShortcutUIStorage[Game].Add(TrimmedName, Border);
-
             ConvertAndSetShortcutElements(Game);
         }
 
