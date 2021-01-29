@@ -15,6 +15,20 @@ namespace VoiceControl
     {
         public Dictionary<string, List<string>> ChoiceList { get; private set; } = new Dictionary<string, List<string>>();
         public Dictionary<string, Dictionary<string, List<Keyboard.ScanCodeShort>>> Keyevents { get; private set; } = new Dictionary<string, Dictionary<string, List<Keyboard.ScanCodeShort>>>();
+        
+        private object Match(string _key)
+        {
+            foreach(Key inputEnum in Enum.GetValues(typeof(Key)))
+            {
+                if (inputEnum.ToString().ToLower() == _key.ToLower())
+                {
+                    Console.WriteLine(inputEnum.ToString().ToLower());
+                    return inputEnum;
+                }
+            }
+
+            return null;
+        }
 
         public void LoadChoices()
         {
@@ -44,8 +58,13 @@ namespace VoiceControl
                         MainWindow.AppWindow.KeysPressed = new List<Key>();
                         foreach (string choice in _result.Value)
                         {
+                            MainWindow.AppWindow.KeysPressed.Clear();
                             foreach (Keyboard.ScanCodeShort key in Keyevents[_result.Key][choice])
-                                MainWindow.AppWindow.KeysPressed.Add((Key)Enum.Parse(typeof(Key), key.ToString()));
+                            {
+                                object _match = Match(key.ToString());
+                                if(_match != null)
+                                    MainWindow.AppWindow.KeysPressed.Add((Key)_match);
+                            }
 
                             MainWindow.AppWindow.Creator.CreateShortcutTemplate(_result.Key, choice);
                         }
@@ -93,6 +112,7 @@ namespace VoiceControl
                 Keyevents.Add(Game, new Dictionary<string, List<Keyboard.ScanCodeShort>>());
 
             Keyevents[Game].Add(Value, keycode);
+            VoiceChoices.AppWindow.Reconfigure();
         }
 
         public void RemoveGame(string game)

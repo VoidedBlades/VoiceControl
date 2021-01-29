@@ -225,6 +225,8 @@ namespace VoiceControl
 
             MainWindow.AppWindow.shortcutHandler.RemoveChoice(_game, _name);
             ConvertAndSetShortcutElements(_game);
+
+            VoiceChoices.AppWindow.Reconfigure();
         }
 
         private void DeleteObject(object sender, RoutedEventArgs e)

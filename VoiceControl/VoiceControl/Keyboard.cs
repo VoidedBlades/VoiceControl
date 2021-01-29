@@ -11,7 +11,8 @@ namespace VoiceControl
     {
         public void Send(List<ScanCodeShort> a)
         {
-            INPUT[] Inputs = new INPUT[a.Count];
+            List<INPUT> InputList = new List<INPUT>();
+            List<INPUT> modifiers = new List<INPUT>();
 
             for (int index = 0; index < a.Count; index++)
             {
@@ -19,10 +20,28 @@ namespace VoiceControl
                 Input.type = 1; // 1 = Keyboard Input
                 Input.U.ki.wScan = a[index];
                 Input.U.ki.dwFlags = KEYEVENTF.SCANCODE;
-                Inputs[index] = Input;
+                InputList.Add(Input);
+
+                if (a[index] == ScanCodeShort.SHIFT || a[index] == ScanCodeShort.CONTROL)
+                {
+                    // making sure modifiers are released
+                    Input.U.ki.dwFlags = KEYEVENTF.KEYUP | KEYEVENTF.SCANCODE;
+                    modifiers.Add(Input);
+                }
             }
 
-            SendInput((uint)a.Count, Inputs, INPUT.Size);
+            foreach (INPUT Input in modifiers)
+                InputList.Add(Input);
+
+            INPUT[] Inputs = new INPUT[InputList.Count];
+
+            for (int index = 0; index < InputList.Count; index++)
+            {
+                Console.WriteLine(InputList[index].U.ki.dwFlags);
+                Inputs[index] = InputList[index];
+            }
+
+            SendInput((uint)Inputs.Length, Inputs, INPUT.Size);
         }
 
         /// <summary>
@@ -852,7 +871,7 @@ namespace VoiceControl
             EXECUTE = 0,
             SNAPSHOT = 84,
             INSERT = 82,
-            DELETE = 83,
+            DELETE = 89,
             HELP = 99,
             D0 = 11,
             D1 = 2,
@@ -936,12 +955,12 @@ namespace VoiceControl
             F24 = 118,
             NUMLOCK = 69,
             SCROLL = 70,
-            LSHIFT = 42,
-            RSHIFT = 54,
-            LCONTROL = 29,
-            RCONTROL = 29,
-            LMENU = 56,
-            RMENU = 56,
+            LEFTSHIFT = 42,
+            RIGHTSHIFT = 54,
+            LEFTCONTROL = 29,
+            RIGHTCONTROL = 29,
+            LEFTMENU = 56,
+            RIGHTMENU = 56,
             BROWSERBACK = 106,
             BROWSERFORWARD = 105,
             BROWSERREFRESH = 103,

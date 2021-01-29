@@ -13,10 +13,13 @@ namespace VoiceControl
     {
         public static MainWindow AppWindow;
 
-        private static ListBox ShortcutList_Internal;
-        private static ListBox GameList_Internal;
+        private ListBox ShortcutList_Internal;
+        private ListBox GameList_Internal;
+
         public ShortcutHandler shortcutHandler;
         public ObjectCreator Creator;
+        public VoiceChoices voiceChoices;
+        public TextHandler textHandler;
 
         public string SelectedGame;
         public bool Recording;
@@ -24,6 +27,7 @@ namespace VoiceControl
         public Keyboard KeyboardInput;
 
         public List<Key> KeysPressed;
+        private object LastKey;
 
         public MainWindow()
         {
@@ -35,9 +39,15 @@ namespace VoiceControl
 
             shortcutHandler = new ShortcutHandler();
             Creator = new ObjectCreator();
+            voiceChoices = new VoiceChoices();
+            textHandler = new TextHandler();
+            KeyboardInput = new Keyboard();
 
             KeysPressed = new List<Key>();
             Key_Converter = new KeyConverter();
+
+            voiceChoices.OnStartup();
+            textHandler.OnStartup();
 
             shortcutHandler.LoadChoices();
 
@@ -62,6 +72,7 @@ namespace VoiceControl
                 SelectedGame = s;
                 SelectedGameText.Content = s.Replace("1a44d2", " ");
             }
+            VoiceChoices.AppWindow.Reconfigure();
         }
 
         public void SetGameItems(List<Border> _List)
@@ -102,8 +113,12 @@ namespace VoiceControl
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
+            if (LastKey != null && (Key)LastKey == e.Key) // cancel out holds
+                return;
+
             if (Recording && SelectedGame != null && KeysPressed.Count < 4)
             {
+                LastKey = e.Key;
                 KeyComboDisplay.Content += (string)KeyComboDisplay.Content == "" ? Key_Converter.ConvertToString(e.Key) : " + " + Key_Converter.ConvertToString(e.Key);
                 KeysPressed.Add(e.Key);
             }
@@ -118,6 +133,7 @@ namespace VoiceControl
                 KeyComboDisplay.Content = "";
                 KeysPressed.Clear();
                 RecordKey.Content = "Finish Recording";
+                LastKey = null;
             }
             else
                 RecordKey.Content = "Record Keycombo";

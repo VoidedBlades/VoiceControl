@@ -26,38 +26,7 @@ namespace VoiceControl
             base.OnStartup(e);
             InitializeComponent();
             AppWindow = this;
-
-            VoiceChoices._Startup();
-
-            SetupVoiceControl();
         }
-
-        private async void SetupVoiceControl()
-        {
-            //try
-            //{
-            //    CultureInfo Culture = new CultureInfo(CultureInfo.CurrentCulture.Name);
-            //    await Await.WaitForMainwindow();
-
-            //    Recognizer = new SpeechRecognitionEngine(Culture);
-
-            //    Recognizer.RequestRecognizerUpdate();
-            //    // setup choices
-
-            //    //Recognizer.SpeechRecognized += recognizer_SpeechRecognized;
-            //    Recognizer.SpeechHypothesized += recognizer_HypothesizedRecognized;
-
-            //    Recognizer.SetInputToDefaultAudioDevice();
-            //    Recognizer.RecognizeAsync(RecognizeMode.Multiple);
-
-            //    VoiceControl.MainWindow.AppWindow.UpdateLanguageText(CultureInfo.CurrentCulture.Name);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.InnerException.Message);
-            //}
-        }
-
         static void recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             string results = e.Result.Text;
