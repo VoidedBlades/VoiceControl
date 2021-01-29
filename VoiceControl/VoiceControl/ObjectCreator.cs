@@ -71,6 +71,7 @@ namespace VoiceControl
         /// <param name="Name"></param>
         public void CreateGameTemplate(string Name)
         {
+            Name = Name.Replace("1a44d2", " ");
             string trimmedName = Name.Replace(" ", "1a44d2");
 
             if (GameUIStorage.ContainsKey(trimmedName)) return;
@@ -143,16 +144,6 @@ namespace VoiceControl
             Border Border = new Border() { Name = TrimmedName, BorderBrush = Brushes.DarkGray, BorderThickness = new Thickness(1, 1, 1, 1), Height = 48, Width = 173 };
             Grid Grid = new Grid() { Height = 48, Width = 170, Margin = new Thickness(0, 0, 0, -2) };
 
-            //string KeyString = "";
-
-            //foreach(System.Windows.Input.Key key in MainWindow.AppWindow.KeysPressed)
-            //{
-            //    if (KeyString == "")
-            //        KeyString = key.ToString();
-            //    else
-            //        KeyString += " + " + key.ToString();
-            //}
-
             Button RecordedKeys = new Button()
             {
                 Content = string.Join(" + ", MainWindow.AppWindow.KeysPressed),
@@ -205,7 +196,9 @@ namespace VoiceControl
                 ShortcutUIStorage.Add(Game, new Dictionary<string, Border>());
 
             ShortcutUIStorage[Game].Add(TrimmedName, Border);
-            ConvertAndSetShortcutElements(Game);
+
+            if(MainWindow.AppWindow.SelectedGame == Game)
+                ConvertAndSetShortcutElements(Game);
         }
 
         private void SelectGame(object sender, RoutedEventArgs e)
@@ -230,6 +223,7 @@ namespace VoiceControl
 
             ShortcutUIStorage[_game].Remove(_name);
 
+            MainWindow.AppWindow.shortcutHandler.RemoveChoice(_game, _name);
             ConvertAndSetShortcutElements(_game);
         }
 
@@ -240,13 +234,15 @@ namespace VoiceControl
             _name = _name.Trim();
 
             GameUIStorage.Remove(_name);
-            ShortcutUIStorage[_name].Clear();
+            if(ShortcutUIStorage.ContainsKey(_name))
+                ShortcutUIStorage[_name].Clear();
 
             ConvertAndSetGameElements();
 
             if (MainWindow.AppWindow.SelectedGame == _name)
                 MainWindow.AppWindow.UpdateSelectedGame(null);
 
+            MainWindow.AppWindow.shortcutHandler.RemoveGame(_name);
             ConvertAndSetShortcutElements(_name);
         }
     }
