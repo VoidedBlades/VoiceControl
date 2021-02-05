@@ -53,5 +53,11 @@ namespace VoiceControl
             recognizer.LoadGrammar(new Grammar(_builder));
             recognizer.RecognizeAsync(RecognizeMode.Multiple);
         }
+
+        public void Shutdown()
+        {
+            recognizer.RecognizeAsyncStop();
+            recognizer.UnloadAllGrammars();
+        }
     }
 }

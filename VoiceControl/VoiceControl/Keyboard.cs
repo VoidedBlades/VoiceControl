@@ -9,8 +9,10 @@ namespace VoiceControl
 {
     public class Keyboard
     {
-        public void Send(List<ScanCodeShort> a)
+        public async void Send(List<ScanCodeShort> a)
         {
+            await Task.Delay(10);
+
             List<INPUT> InputList = new List<INPUT>();
             List<INPUT> modifiers = new List<INPUT>();
 
@@ -22,26 +24,26 @@ namespace VoiceControl
                 Input.U.ki.dwFlags = KEYEVENTF.SCANCODE;
                 InputList.Add(Input);
 
-                if (a[index] == ScanCodeShort.SHIFT || a[index] == ScanCodeShort.CONTROL)
-                {
-                    // making sure modifiers are released
-                    Input.U.ki.dwFlags = KEYEVENTF.KEYUP | KEYEVENTF.SCANCODE;
-                    modifiers.Add(Input);
-                }
+                Input.U.ki.dwFlags = KEYEVENTF.KEYUP | KEYEVENTF.SCANCODE;
+                modifiers.Add(Input);
             }
-
-            foreach (INPUT Input in modifiers)
-                InputList.Add(Input);
 
             INPUT[] Inputs = new INPUT[InputList.Count];
 
             for (int index = 0; index < InputList.Count; index++)
-            {
-                Console.WriteLine(InputList[index].U.ki.dwFlags);
                 Inputs[index] = InputList[index];
-            }
 
             SendInput((uint)Inputs.Length, Inputs, INPUT.Size);
+
+            await Task.Delay(30);
+
+            Inputs = new INPUT[modifiers.Count];
+
+            for (int index = 0; index < modifiers.Count; index++)
+                Inputs[index] = modifiers[index];
+
+            SendInput((uint)Inputs.Length, Inputs, INPUT.Size);
+            Console.WriteLine("Stopped");
         }
 
         /// <summary>
@@ -188,7 +190,7 @@ namespace VoiceControl
             ///<summary>
             ///ALT key
             ///</summary>
-            MENU = 0x12,
+            SYSTEM = 0x12,
             ///<summary>
             ///PAUSE key
             ///</summary>
@@ -636,19 +638,19 @@ namespace VoiceControl
             ///<summary>
             ///Left SHIFT key
             ///</summary>
-            LSHIFT = 0xA0,
+            LEFTSHIFT = 0xA0,
             ///<summary>
             ///Right SHIFT key
             ///</summary>
-            RSHIFT = 0xA1,
+            RIGHTSHIFT = 0xA1,
             ///<summary>
             ///Left CONTROL key
             ///</summary>
-            LCONTROL = 0xA2,
+            LEFTCTRL = 0xA2,
             ///<summary>
             ///Right CONTROL key
             ///</summary>
-            RCONTROL = 0xA3,
+            RIGHTCTRL = 0xA3,
             ///<summary>
             ///Left MENU key
             ///</summary>
@@ -843,7 +845,7 @@ namespace VoiceControl
             RETURN = 28,
             SHIFT = 42,
             CONTROL = 29,
-            MENU = 56,
+            SYSTEM = 56,
             PAUSE = 0,
             CAPITAL = 58,
             KANA = 0,
@@ -957,8 +959,8 @@ namespace VoiceControl
             SCROLL = 70,
             LEFTSHIFT = 42,
             RIGHTSHIFT = 54,
-            LEFTCONTROL = 29,
-            RIGHTCONTROL = 29,
+            LEFTCTRL = 29,
+            RIGHTCTRL = 29,
             LEFTMENU = 56,
             RIGHTMENU = 56,
             BROWSERBACK = 106,

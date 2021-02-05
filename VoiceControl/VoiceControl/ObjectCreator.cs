@@ -135,7 +135,7 @@ namespace VoiceControl
         /// <param name="Name"></param>
         public void CreateShortcutTemplate(string Game, string Name)
         {
-
+            if (Game == null || Name == null) return;
             Name = Name.Trim();
             string TrimmedName = Name.Replace(" ", "1a44d2");
 
@@ -223,7 +223,7 @@ namespace VoiceControl
 
             ShortcutUIStorage[_game].Remove(_name);
 
-            MainWindow.AppWindow.shortcutHandler.RemoveChoice(_game, _name);
+            MainWindow.AppWindow.shortcutHandler.RemoveChoice(_game, _name.Replace("1a44d2", " "));
             ConvertAndSetShortcutElements(_game);
 
             VoiceChoices.AppWindow.Reconfigure();

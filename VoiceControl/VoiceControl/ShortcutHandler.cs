@@ -104,12 +104,21 @@ namespace VoiceControl
         /// <param name="Value"></param>
         public void AddChoices(string Game, string Value, List<Keyboard.ScanCodeShort> keycode)
         {
+            if (Game == null || Value == null) return;
+
             if (!ChoiceList.ContainsKey(Game))
                 ChoiceList.Add(Game, new List<string>());
+
+            if (ChoiceList[Game].Contains(Value)) return;
 
             ChoiceList[Game].Add(Value);
             if (!Keyevents.ContainsKey(Game))
                 Keyevents.Add(Game, new Dictionary<string, List<Keyboard.ScanCodeShort>>());
+
+            if (Keyevents[Game].ContainsKey(Value)) return;
+
+            foreach (Keyboard.ScanCodeShort code in keycode)
+                Console.WriteLine(code);
 
             Keyevents[Game].Add(Value, keycode);
             VoiceChoices.AppWindow.Reconfigure();
@@ -128,11 +137,16 @@ namespace VoiceControl
         {
             if (ChoiceList.ContainsKey(game))
                 if (ChoiceList[game].Contains(choice))
+                {
+                    Console.WriteLine("removed");
                     ChoiceList[game].Remove(choice);
-
+                }
             if (Keyevents.ContainsKey(game))
                 if (Keyevents[game].ContainsKey(choice))
+                {
+                    Console.WriteLine("removed2");
                     Keyevents[game].Remove(choice);
+                }
         }
     }
 }
